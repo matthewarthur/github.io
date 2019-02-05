@@ -1,0 +1,5 @@
+# Option 1
+aws ec2 describe-instances --query 'Reservations[*].{Owner:OwnerId, IP:Instances[0].PublicIpAddress, State: Instances[0].State.Name, Key: Instances[0].KeyName, InstanceType:Instances[0].InstanceType}' --output json
+
+# Option 2
+aws ec2 describe-instances --query 'Reservations[*].[OwnerId,Instances[*].[ImageId, InstanceType, KeyName, State.Name, PublicIpAddress, NetworkInterfaces.Groups.GroupName]]' --output json
